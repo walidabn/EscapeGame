@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+
+<audio controls autoplay>
+    <source src='/static/long.mp3' type='audio/mp3' >
+    Your browser does not support the audio tag.
+</audio>
+
+
     <form action="/solve" method="POST">
         <input type="text" name="pin" id="pin">
         <input type="submit" value="Entrer le code à 4 chiffres">
     </form>
+
+   
+    <p style= "color : red"> {{tried}}</p>
+   
+
 
     <h4 style="color: green;">Je prend mon pied avec ces enigmes aussi créatives! (Ai-je trouvé le bon indice pour ce code?)</h4>
 {% endblock %}

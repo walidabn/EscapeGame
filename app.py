@@ -6,15 +6,17 @@ app = Flask(__name__)
 
 begin_time = None
 solved = False
+tried = ""
 
 @app.route('/', methods=['GET'])
 def main_page():
     global begin_time
     global solved
+    global tried
     if begin_time == None:
         return render_template('start.html')
     elif not solved:
-        return render_template('challenge.html')
+            return render_template('challenge.html', tried = tried)
     # TODO ADD IF TIME IS UP, RENDER GAME OVER
     else:
         return render_template('end.html')
@@ -30,9 +32,12 @@ def begin():
 @app.route('/solve', methods=['POST'])
 def solve():
     global solved
+    global tried 
     pin = request.form['pin']
     print('Try to solve with ', pin)
     # TODO ADD TIME UP CHECK
+    if pin != None : 
+        tried = "Tupu! C'est pas le bon code! (Barbaflemme de faire un système dynamique qui adapte la musique à tes erreurs, remet la musique là ou t'étais comme une grande!)"
     if (pin == "2906"):
         solved = True
     return redirect(url_for('main_page'))
